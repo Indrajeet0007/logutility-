@@ -21,7 +21,6 @@ public class LogMux {
 	}
 
 	public Logs getlogs(String txnID, String mailID) {
-		log.setMailID(mailID);
 		return logUtility.getlogs(txnID.trim());
 	}
 

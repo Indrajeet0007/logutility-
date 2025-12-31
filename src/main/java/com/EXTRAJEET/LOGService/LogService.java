@@ -1,13 +1,15 @@
 package com.EXTRAJEET.LOGService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.EXTRAJEET.entities.Logs;
 import com.EXTRAJEET.entities.XmlReader;
 
 public class LogService {
+	@Autowired
+	LogUtility logUtility;
 
-	public static String getlogs (String txnID ) {
-		XmlReader xmlReader=new XmlReader();
-		Logs log = new Logs();
-		return LogUtility.getlogs(txnID.trim(),xmlReader,log).toString();
+	public  Logs getlogs (String txnID ) {
+		return logUtility.getlogs(txnID.trim());
 	}
 }

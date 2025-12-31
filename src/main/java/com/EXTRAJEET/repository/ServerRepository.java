@@ -24,27 +24,17 @@ public class ServerRepository {
 
 	Logger logger = LoggerFactory.getLogger(ServerRepository.class);
 
-	public Logs getIpDetails(String txnId) {
+	public Logs getIpDetails(String nodeId) {
 
-		logs.setTxnID(txnId);
 
 		String appName = "";
 		String app = "";
 		String appNo = "";
 		String ip = "";
-		String nodeid = "";
 		String pass = "";
 
 		try {
-			if (txnId.length() == 19) {
-				nodeid = txnId.substring(1, 3);
 
-			} else if (txnId.length() == 18) {
-				nodeid = txnId.substring(1, 2);
-			} else {
-				logger.info("INVALID TXN ID");
-				return logs;
-			}
 
 			// creating a constructor of file class and parsing an XML file
 			File file = new File(Constants.XMLPATH);
@@ -55,7 +45,7 @@ public class ServerRepository {
 			Document doc = db.parse(file);
 			doc.getDocumentElement().normalize();
 
-			NodeList nodeList = doc.getElementsByTagName("node" + nodeid);
+			NodeList nodeList = doc.getElementsByTagName("node" + nodeId);
 			Node node = nodeList.item(0);
 			if (node.getNodeType() == Node.ELEMENT_NODE) {
 				Element eElement = (Element) node;
@@ -65,7 +55,7 @@ public class ServerRepository {
 				logger.info("IP :" + (ip = eElement.getElementsByTagName("address").item(0).getTextContent()));
 				logger.info(
 						"Password : " + (pass = eElement.getElementsByTagName("password").item(0).getTextContent()));
-				logger.info("NODE ID : " + nodeid);
+				logger.info("NODE ID : " + nodeId);
 				logs.setAppName(appName);
 				logs.setApp(app);
 				logs.setAppNo(appNo);

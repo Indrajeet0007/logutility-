@@ -11,6 +11,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -32,7 +33,7 @@ import com.jcraft.jsch.Session;
  * 
  * @author Indrajeet Kandhare
  */
-
+@Component
 public class LogUtility {
 	private Logger logger = LoggerFactory.getLogger(LogUtility.class);
 
@@ -41,18 +42,34 @@ public class LogUtility {
 
 	@Autowired
 	XmlReader xmlReader;
-
+	@Autowired
+	Logs log;
 	public Logs getlogs(String txnId) {
-		Logs log = serverRepository.getIpDetails(txnId);
-		boolean MAIL = xmlReader.isMAIL();
-		boolean prod = xmlReader.isProd();
-
+		
 		String logs = "";
 		String backup = "";
 		String txncmd = "";
 		String server = "";
 		String analysis = "";
+		String nodeId="";
+		if (txnId.length() == 19) {
+			nodeId = txnId.substring(1, 3);
 
+		} else if (txnId.length() == 18) {
+			nodeId = txnId.substring(1, 2);
+		} else {
+			logger.info("INVALID TXN ID");
+			return log;
+		}
+		
+		log = serverRepository.getIpDetails(txnId);
+		log.setTxnID(txnId);
+		boolean MAIL = xmlReader.isMAIL();
+		boolean prod = xmlReader.isProd();
+
+
+
+		
 		server = "ssh " + xmlReader.getUserName() + "@" + log.getIp();
 		String DateANDTime = Clock.getDateANDTime(txnId);
 		log.setDateANDTime(DateANDTime);
