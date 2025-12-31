@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.EXTRAJEET.JWTutil;
 import com.EXTRAJEET.LOGService.LogMux;
+import com.EXTRAJEET.entities.Logs;
 import com.EXTRAJEET.entities.UserDetail;
 import com.EXTRAJEET.userService.UserDetailService;
-
 
 @RestController
 @RequestMapping("/api")
@@ -29,29 +29,32 @@ public class Controller {
 	@Autowired
 	JWTutil jwTutil;
 	@Autowired
-	AuthenticationManager  authenticationManager;
-	
-	@GetMapping("/logs/{TXNID}")	
-	public String getlogs(@PathVariable String TXNID) {
-		System.out.print(TXNID);
-		return LogMux.getlogs(TXNID);
+	AuthenticationManager authenticationManager;
+
+	@Autowired
+	LogMux logMux;
+
+	@GetMapping("/getLogs/{TXNID}")
+	public Logs getlogs(@PathVariable String TXNID) {
+		return logMux.getlogs(TXNID);
 	}
-	
-	@GetMapping("/getall")
+
+	@GetMapping("/getAll")
 	public List<UserDetail> getAllUsers() {
 		return userDetailService.getAll();
 	}
+
 	@PostMapping("/save")
 	public String registerUser(@RequestBody UserDetail userDetail) {
-		System.out.print("insideres"+userDetail);
 		log.info(userDetail.toString());
 		userDetailService.saveUser(userDetail);
 		return "Restered";
 	}
-	@PostMapping("/gettoken")
+
+	@PostMapping("/getToken")
 	public String getToken(@RequestBody UserDetail userDetail) {
-		log.info("WAS HERE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..");
-		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDetail.getUsername(), userDetail.getPassword()));
+		authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(userDetail.getUsername(), userDetail.getPassword()));
 		return jwTutil.tokenGeneration(userDetail.getUsername());
 	}
 }

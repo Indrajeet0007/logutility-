@@ -53,10 +53,10 @@ if(authToken != null && authToken.startsWith("Bearer ")) {
 	  
 	  
   }
-  filterChain.doFilter(request, response);
   
   
 }
+filterChain.doFilter(request, response);
 		
 	}
 

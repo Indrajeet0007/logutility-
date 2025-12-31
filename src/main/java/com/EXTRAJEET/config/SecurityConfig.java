@@ -23,12 +23,14 @@ public class SecurityConfig {
 	@Autowired
 	AuthTokenfilter tokenfilter;
 	
-	@Bean
+	@Bean 
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 	
 	return httpSecurity.csrf( csrf->csrf.disable())
 			.authorizeHttpRequests(Auth->Auth.requestMatchers("/api/save").permitAll()
+					.requestMatchers("/api/getall").permitAll()
 					.requestMatchers("/h2-console/**").permitAll()
+					.requestMatchers("/api/gettoken").permitAll()
 					.anyRequest().authenticated()
 					)
 			.headers(headers -> headers.frameOptions(frame -> frame.disable()))

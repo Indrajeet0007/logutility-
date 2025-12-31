@@ -1,0 +1,1331 @@
+
+<EXTRAJEET>
+<Credentials>
+<HOST>uat42.auruspay.com</HOST>
+<USERNAME>vchavan</USERNAME>
+<PORT>22</PORT>
+<HOSTPASSWORD>R@!G@d_2k25!</HOSTPASSWORD>
+<DualAuth>N</DualAuth>
+<UATPASSWORD>S@nGl!_2k25!</UATPASSWORD>
+
+<BACKUPIP>192.168.13.101</BACKUPIP>
+<BACKUPUSER>backup</BACKUPUSER>
+<BKPASSWORD>M@r!on_567$</BKPASSWORD>
+
+<DOWNLOAD>N</DOWNLOAD>
+<C>10</C>  <!--LIKE C10-->
+<Backup>1</Backup>
+<field>0</field>
+<Analyst>1</Analyst>
+<SearchKEY>1</SearchKEY>
+<SearchKeys>ORIGINAL TRANSACTION DATE AND TIME :,PRIMARY BIT MAP IN BITS : </SearchKeys>
+<EncyrptionFlag>N,N</EncyrptionFlag>
+<PROD>N</PROD>
+<MAIL>N</MAIL>
+<PRODBACKUPIP>192.168.31.4</PRODBACKUPIP>
+<PRODBACKUPUSER>backup</PRODBACKUPUSER>
+<PRODBACKUPPASS>M@r!on_567$</PRODBACKUPPASS>
+<PRODPASS>G0d@V@ri_2k25!</PRODPASS>
+</Credentials>
+
+<Test>
+    <node91>  
+        <name>vwuat42</name>  
+        <app>1</app>  
+        <appno>1</appno>  
+        <address>192.168.50.152</address>  
+        <DualAuth>N</DualAuth>
+<password>S@nGl!_2k25!</password>  
+    </node91>  
+  
+    <node92>  
+        <name>vwuat42</name>  
+        <app>2</app>  
+        <appno>2</appno>  
+        <address>192.168.50.153</address>  
+        <DualAuth>N</DualAuth>
+<password>S@nGl!_2k25!</password>  
+    </node92>  
+  
+    <node93>  
+        <name>vwuat42</name>  
+        <app>3</app>  
+        <appno>3</appno>  
+        <address>192.168.50.172</address>  
+        <DualAuth>N</DualAuth>
+<password>S@nGl!_2k25!</password>  
+    </node93>  
+  
+    <node94>  
+        <name>vwuat42</name>  
+        <app>4</app>  
+        <appno>4</appno>  
+        <address>192.168.50.72</address>  
+        <DualAuth>N</DualAuth>
+<password>S@nGl!_2k25!</password>  
+    </node94>  
+  
+    <node95>  
+        <name>sgnd</name>  
+        <app>1</app>  
+        <appno>1</appno>  
+        <address>192.168.50.155</address>  
+        <DualAuth>N</DualAuth>
+<password>S@nGl!_2k25!</password>  
+    </node95>  
+  
+    <node96>  
+        <name>ldnd</name>  
+        <app>1</app>  
+        <appno>1</appno>  
+        <address>192.168.50.169</address>  
+        <DualAuth>Y</DualAuth>
+<password>S@nGl!_2k25!</password>  
+    </node96>  
+    <node97>  
+        <name>dev</name>  
+        <app>1</app>  
+        <appno>1</appno>  
+        <address>192.168.50.69</address>  
+        <DualAuth>Y</DualAuth>
+<password>S@nGl!_2k25!</password>  
+    </node97>
+    <node99>  
+        <name>Cert</name>  
+        <app>1</app>  
+        <appno>1</appno>  
+        <address>192.168.50.71</address>  
+        <DualAuth>Y</DualAuth>
+<password>S@nGl!_2k25!</password>  
+    </node99>   
+        <node01>  
+        <name>OC</name>  
+        <app>1</app>  
+        <appno>1</appno>  
+        <address>192.168.180.51</address>  
+        <DualAuth>N</DualAuth>
+<password>S@nGl!_2k25!</password>  
+    </node01> 
+</Test>
+
+  
+<prod>
+	
+    <node01>  
+        <name>MS11</name>  
+        <app>App1</app>  
+        <appno>1</appno>  
+        <address>172.22.131.171</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node01>  
+  
+    <node02>  
+        <name>MS11</name>  
+        <app>App2</app>  
+        <appno>2</appno>  
+        <address>172.22.132.181\n</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node02>  
+  
+    <node23>  
+        <name>MS11</name>  
+        <app>App3</app>  
+        <appno>3</appno>  
+        <address>172.22.131.170</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node23>  
+  
+    <node24>  
+        <name>MS11</name>  
+        <app>App4</app>  
+        <appno>4</appno>  
+        <address>172.22.132.180</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node24>  
+  
+    <node03>  
+        <name>MS41</name>  
+        <app>App1</app>  
+        <appno>5</appno>  
+        <address>172.22.20.152</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node03>  
+  
+    <node04>  
+        <name>MS41</name>  
+        <app>App2</app>  
+        <appno>6</appno>  
+        <address>172.22.21.52</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node04>  
+  
+    <node43>  
+        <name>MS41</name>  
+        <app>App3</app>  
+        <appno>7</appno>  
+        <address>172.22.20.52</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node43>  
+  
+    <node44>  
+        <name>MS41</name>  
+        <app>App4</app>  
+        <appno>8</appno>  
+        <address>172.22.21.152</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node44>  
+  
+    <node05>  
+        <name>MS17</name>  
+        <app>App1</app>  
+        <appno>1</appno>  
+        <address>172.22.131.196</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node05>  
+  
+    <node06>  
+        <name>MS17</name>  
+        <app>App2</app>  
+        <appno>2</appno>  
+        <address>172.22.132.196</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node06>  
+  
+    <node25>  
+        <name>MS17</name>  
+        <app>App3</app>  
+        <appno>3</appno>  
+        <address>172.22.131.238</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node25>  
+  
+    <node26>  
+        <name>MS17</name>  
+        <app>App4</app>  
+        <appno>4</appno>  
+        <address>172.22.132.238</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node26>  
+  
+    <node07>  
+        <name>MS57</name>  
+        <app>App1</app>  
+        <appno>5</appno>  
+        <address>172.22.20.196</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node07>  
+  
+    <node08>  
+        <name>MS57</name>  
+        <app>App2</app>  
+        <appno>6</appno>  
+        <address>172.22.21.196</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node08>  
+  
+    <node41>  
+        <name>MS57</name>  
+        <app>App3</app>  
+        <appno>7</appno>  
+        <address>172.22.20.38</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node41>  
+  
+    <node42>  
+        <name>MS57</name>  
+        <app>App4</app>  
+        <appno>8</appno>  
+        <address>172.22.21.38</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node42>  
+  
+    <node09>  
+        <name>MS01</name>  
+        <app>App1</app>  
+        <appno>1</appno>  
+        <address>172.22.131.200</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node09>  
+  
+    <node10>  
+        <name>MS01</name>  
+        <app>App2</app>  
+        <appno>2</appno>  
+        <address>172.22.132.200</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node10>  
+  
+    <node27>  
+        <name>MS01</name>  
+        <app>App3</app>  
+        <appno>3</appno>  
+        <address>172.22.131.204</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node27>  
+  
+    <node28>  
+        <name>MS01</name>  
+        <app>App4</app>  
+        <appno>4</appno>  
+        <address>172.22.132.204</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node28>  
+      <node37>  
+        <name>MS01</name>  
+        <app>App5</app>  
+        <appno>5</appno>  
+        <address>172.22.131.254</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node37>  
+        <node38>  
+        <name>MS01</name>  
+        <app>App6</app>  
+        <appno>6</appno>  
+        <address>172.22.132.173</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node38>  
+    <node11>  
+        <name>MS02</name>  
+        <app>App1</app>  
+        <appno>5</appno>  
+        <address>172.22.20.151</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node11>  
+  
+    <node12>  
+        <name>MS02</name>  
+        <app>App2</app>  
+        <appno>6</appno>  
+        <address>172.22.21.51</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node12>  
+  
+    <node45>  
+        <name>MS02</name>  
+        <app>App3</app>  
+        <appno>7</appno>  
+        <address>172.22.20.51</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node45>  
+  
+    <node46>  
+        <name>MS02</name>  
+        <app>App4</app>  
+        <appno>8</appno>  
+        <address>172.22.21.151</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node46>  
+  
+    <node13>  
+        <name>MS13</name>  
+        <app>APP1</app>  
+        <appno>1</appno>  
+        <address>172.22.131.190</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node13>  
+  
+    <node14>  
+        <name>MS13</name>  
+        <app>APP2</app>  
+        <appno>2</appno>  
+        <address>172.22.132.190</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node14>  
+  
+    <node63>  
+        <name>MS13</name>  
+        <app>APP3</app>  
+        <appno>3</appno>  
+        <address>172.22.131.218</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node63>  
+  
+    <node64>  
+        <name>MS13</name>  
+        <app>APP4</app>  
+        <appno>4</appno>  
+        <address>172.22.132.218</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node64>  
+  
+    <node15>  
+        <name>MS43</name>  
+        <app>APP1</app>  
+        <appno>5</appno>  
+        <address>172.22.10.27</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node15>  
+  
+    <node16>  
+        <name>MS43</name>  
+        <app>APP2</app>  
+        <appno>6</appno>  
+        <address>172.22.20.27</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node16>  
+  
+    <node65>  
+        <name>MS43</name>  
+        <app>APP3</app>  
+        <appno>7</appno>  
+        <address>172.22.10.30</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node65>  
+  
+    <node66>  
+        <name>MS43</name>  
+        <app>APP4</app>  
+        <appno>8</appno>  
+        <address>172.22.20.30</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node66>  
+  
+    <node17>  
+        <name>IVR44</name>  
+        <app>App1</app>  
+        <appno>1</appno>  
+        <address>172.22.20.32</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node17>  
+  
+    <node18>  
+        <name>IVR44</name>  
+        <app>App2</app>  
+        <appno>2</appno>  
+        <address>172.22.21.32</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node18>  
+  
+    <node19>  
+        <name>mkivr14</name>  
+        <app>App1</app>  
+        <appno>3</appno>  
+        <address>172.22.131.132</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node19>  
+  
+    <node20>  
+        <name>mkivr14</name>  
+        <app>App2</app>  
+        <appno>4</appno>  
+        <address>172.22.132.132</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node20>  
+  
+    <node29>  
+        <name>MS19</name>  
+        <app>App1</app>  
+        <appno>1</appno>  
+        <address>172.22.131.182</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node29>  
+  
+    <node30>  
+        <name>MS19</name>  
+        <app>App2</app>  
+        <appno>2</appno>  
+        <address>172.22.132.182</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node30>  
+  
+    <node31>  
+        <name>MS19</name>  
+        <app>App3</app>  
+        <appno>3</appno>  
+        <address>172.22.131.161</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node31>  
+  
+    <node32>  
+        <name>MS19</name>  
+        <app>App4</app>  
+        <appno>4</appno>  
+        <address>172.22.132.161</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node32>  
+  
+    <node33>  
+        <name>MS59</name>  
+        <app>App1</app>  
+        <appno>5</appno>  
+        <address>172.22.20.182</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node33>  
+  
+    <node34>  
+        <name>MS59</name>  
+        <app>App2</app>  
+        <appno>6</appno>  
+        <address>172.22.21.182</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node34>  
+  
+    <node35>  
+        <name>MS59</name>  
+        <app>App3</app>  
+        <appno>7</appno>  
+        <address>172.22.20.161</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node35>  
+  
+    <node36>  
+        <name>MS59</name>  
+        <app>App4</app>  
+        <appno>8</appno>  
+        <address>172.22.21.161</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node36>  
+  
+    <node37>  
+        <name>MS21</name>  
+        <app>App01</app>  
+        <appno>1</appno>  
+        <address>172.22.131.162</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node37>  
+  
+    <node38>  
+        <name>MS21</name>  
+        <app>App02</app>  
+        <appno>2</appno>  
+        <address>172.22.132.162</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node38>  
+  
+    <node39>  
+        <name>MS61</name>  
+        <app>App01</app>  
+        <appno>3</appno>  
+        <address>172.22.20.170</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node39>  
+  
+    <node40>  
+        <name>MS61</name>  
+        <app>App02</app>  
+        <appno>4</appno>  
+        <address>172.22.21.170</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node40>  
+  
+    <node47>  
+        <name>mkes01</name>  
+        <app>APP01</app>  
+        <appno>1</appno>  
+        <address>172.22.131.191</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node47>  
+  
+    <node48>  
+        <name>mkes01</name>  
+        <app>APP02</app>  
+        <appno>2</appno>  
+        <address>172.22.132.191</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node48>  
+  
+    <node59>  
+        <name>mkes01</name>  
+        <app>APP03</app>  
+        <appno>3</appno>  
+        <address>172.22.131.240</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node59>  
+  
+    <node60>  
+        <name>mkes01</name>  
+        <app>APP04</app>  
+        <appno>4</appno>  
+        <address>172.22.132.234</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node60>  
+  
+    <node49>  
+        <name>ES41</name>  
+        <app>APP01</app>  
+        <appno>5</appno>  
+        <address>172.22.20.186</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node49>  
+  
+    <node50>  
+        <name>ES41</name>  
+        <app>APP02</app>  
+        <appno>6</appno>  
+        <address>172.22.21.86</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node50>  
+  
+    <node61>  
+        <name>ES41</name>  
+        <app>APP03</app>  
+        <appno>7</appno>  
+        <address>172.22.20.85</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node61>  
+  
+    <node62>  
+        <name>ES41</name>  
+        <app>APP04</app>  
+        <appno>8</appno>  
+        <address>172.22.21.85</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node62>  
+  
+    <node21>  
+        <name>MK</name>  
+        <app>DMSuite</app>  
+        <appno>NA</appno>  
+        <address>172.22.131.223</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node21>  
+  
+    <node22>  
+        <name>VW</name>  
+        <app>DMSuite</app>  
+        <appno>NA</appno>  
+        <address>172.22.131.153</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node22>  
+  
+    <node51>  
+        <name>MS03</name>  
+        <app>APP1</app>  
+        <appno>1</appno>  
+        <address>172.22.131.193</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node51>  
+  
+    <node52>  
+        <name>MS03</name>  
+        <app>APP2</app>  
+        <appno>2</appno>  
+        <address>172.22.132.199</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node52>  
+  
+    <node53>  
+        <name>MS03</name>  
+        <app>APP3</app>  
+        <appno>3</appno>  
+        <address>172.22.131.195</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node53>  
+  
+    <node54>  
+        <name>MS03</name>  
+        <app>APP4</app>  
+        <appno>4</appno>  
+        <address>172.22.132.170</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node54>  
+  
+    <node55>  
+        <name>MS04</name>  
+        <app>APP1</app>  
+        <appno>5</appno>  
+        <address>172.22.20.231</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node55>  
+  
+    <node56>  
+        <name>MS04</name>  
+        <app>APP2</app>  
+        <appno>6</appno>  
+        <address>172.22.21.231</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node56>  
+  
+    <node57>  
+        <name>MS04</name>  
+        <app>APP3</app>  
+        <appno>7</appno>  
+        <address>172.22.20.73</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node57>  
+  
+    <node58>  
+        <name>MS04</name>  
+        <app>APP4</app>  
+        <appno>8</appno>  
+        <address>172.22.21.73</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node58>  
+  
+    <node67>  
+        <name>MS12</name>  
+        <app>APP1</app>  
+        <appno>1</appno>  
+        <address>172.22.231.14</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node67>  
+  
+    <node68>  
+        <name>MS12</name>  
+        <app>APP2</app>  
+        <appno>2</appno>  
+        <address>172.22.232.14</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node68>  
+  
+    <node69>  
+        <name>MS12</name>  
+        <app>APP3</app>  
+        <appno>3</appno>  
+        <address>172.22.231.32</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node69>  
+  
+    <node70>  
+        <name>MS12</name>  
+        <app>APP4</app>  
+        <appno>4</appno>  
+        <address>172.22.232.32</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node70>  
+  
+    <node71>  
+        <name>MS52</name>  
+        <app>APP1</app>  
+        <appno>5</appno>  
+        <address>172.22.120.14</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node71>  
+  
+    <node72>  
+        <name>MS52</name>  
+        <app>APP2</app>  
+        <appno>6</appno>  
+        <address>172.22.121.14</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node72>  
+  
+    <node73>  
+        <name>MS52</name>  
+        <app>APP3</app>  
+        <appno>7</appno>  
+        <address>172.22.120.32</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node73>  
+  
+    <node74>  
+        <name>MS52</name>  
+        <app>APP4</app>  
+        <appno>8</appno>  
+        <address>172.22.121.32</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node74>  
+  
+    <node75>  
+        <name>MS14</name>  
+        <app>APP1</app>  
+        <appno>1</appno>  
+        <address>172.22.231.17</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node75>  
+  
+    <node76>  
+        <name>MS14</name>  
+        <app>APP2</app>  
+        <appno>2</appno>  
+        <address>172.22.232.17</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node76>  
+  
+    <node77>  
+        <name>MS14</name>  
+        <app>APP3</app>  
+        <appno>3</appno>  
+        <address>172.22.231.18</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node77>  
+  
+    <node78>  
+        <name>MS14</name>  
+        <app>APP4</app>  
+        <appno>4</appno>  
+        <address>172.22.232.18</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node78>  
+  
+    <node79>  
+        <name>MS54</name>  
+        <app>APP1</app>  
+        <appno>5</appno>  
+        <address>172.22.120.17</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node79>  
+  
+    <node80>  
+        <name>MS54</name>  
+        <app>APP2</app>  
+        <appno>6</appno>  
+        <address>172.22.121.17</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node80>  
+  
+    <node81>  
+        <name>MS54</name>  
+        <app>APP3</app>  
+        <appno>7</appno>  
+        <address>172.22.120.18</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node81>  
+  
+    <node82>  
+        <name>MS54</name>  
+        <app>APP4</app>  
+        <appno>8</appno>  
+        <address>172.22.121.18</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node82>  
+  
+    <node83>  
+        <name>MS15</name>  
+        <app>APP1</app>  
+        <appno>1</appno>  
+        <address>172.22.231.76</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node83>  
+  
+    <node84>  
+        <name>MS15</name>  
+        <app>APP2</app>  
+        <appno>2</appno>  
+        <address>172.22.232.76</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node84>  
+  
+    <node85>  
+        <name>MS15</name>  
+        <app>APP3</app>  
+        <appno>3</appno>  
+        <address>172.22.231.77</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node85>  
+  
+    <node86>  
+        <name>MS15</name>  
+        <app>APP4</app>  
+        <appno>4</appno>  
+        <address>172.22.232.77</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node86>  
+  
+    <node87>  
+        <name>MS55</name>  
+        <app>APP1</app>  
+        <appno>5</appno>  
+        <address>172.22.120.76</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node87>  
+  
+    <node88>  
+        <name>MS55</name>  
+        <app>APP2</app>  
+        <appno>6</appno>  
+        <address>172.22.121.76</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node88>  
+  
+    <node89>  
+        <name>MS55</name>  
+        <app>APP3</app>  
+        <appno>7</appno>  
+        <address>172.22.120.77</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node89>  
+  
+    <node90>  
+        <name>MS55</name>  
+        <app>APP4</app>  
+        <appno>8</appno>  
+        <address>172.22.121.77</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node90>  
+  
+    <node91>  
+        <name>MS35</name>  
+        <app>APP1</app>  
+        <appno>1</appno>  
+        <address>172.22.71.41</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node91>  
+  
+    <node92>  
+        <name>MS35</name>  
+        <app>APP2</app>  
+        <appno>2</appno>  
+        <address>172.22.72.41</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node92>  
+  
+    <node93>  
+        <name>MS35</name>  
+        <app>APP3</app>  
+        <appno>3</appno>  
+        <address>172.22.71.42</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node93>  
+  
+    <node94>  
+        <name>MS35</name>  
+        <app>APP4</app>  
+        <appno>4</appno>  
+        <address>172.22.72.42</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node94>  
+  
+    <node95>  
+        <name>MS65</name>  
+        <app>APP1</app>  
+        <appno>5</appno>  
+        <address>172.22.171.41</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node95>  
+  
+    <node96>  
+        <name>MS65</name>  
+        <app>APP2</app>  
+        <appno>6</appno>  
+        <address>172.22.172.41</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node96>  
+  
+    <node97>  
+        <name>MS65</name>  
+        <app>APP3</app>  
+        <appno>7</appno>  
+        <address>172.22.171.42</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node97>  
+  
+    <node98>  
+        <name>MS65</name>  
+        <app>APP4</app>  
+        <appno>8</appno>  
+        <address>172.22.172.42</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node98>  
+  
+    <node100>  
+        <name>MS16</name>  
+        <app>APP1</app>  
+        <appno>1</appno>  
+        <address>172.22.231.84</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node100>  
+  
+    <node101>  
+        <name>MS16</name>  
+        <app>APP2</app>  
+        <appno>2</appno>  
+        <address>172.22.232.84</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node101>  
+  
+    <node102>  
+        <name>MS16</name>  
+        <app>APP3</app>  
+        <appno>3</appno>  
+        <address>172.22.231.85</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node102>  
+  
+    <node103>  
+        <name>MS16</name>  
+        <app>APP4</app>  
+        <appno>4</appno>  
+        <address>172.22.232.85</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node103>  
+  
+    <node104>  
+        <name>MS56</name>  
+        <app>APP1</app>  
+        <appno>5</appno>  
+        <address>172.22.120.84</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node104>  
+  
+    <node105>  
+        <name>MS56</name>  
+        <app>APP2</app>  
+        <appno>6</appno>  
+        <address>172.22.121.84</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node105>  
+  
+    <node106>  
+        <name>MS56</name>  
+        <app>APP3</app>  
+        <appno>7</appno>  
+        <address>172.22.120.86</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node106>  
+  
+    <node107>  
+        <name>MS56</name>  
+        <app>APP4</app>  
+        <appno>8</appno>  
+        <address>172.22.121.86</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node107>  
+  
+    <node108>  
+        <name>IVR15</name>  
+        <app>App1</app>  
+        <appno>1</appno>  
+        <address>172.22.231.16</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node108>  
+  
+    <node109>  
+        <name>IVR15</name>  
+        <app>App2</app>  
+        <appno>2</appno>  
+        <address>172.22.232.16</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node109>  
+  
+    <node110>  
+        <name>IVR55</name>  
+        <app>App1</app>  
+        <appno>3</appno>  
+        <address>172.22.120.16</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node110>  
+  
+    <node111>  
+        <name>IVR55</name>  
+        <app>App2</app>  
+        <appno>4</appno>  
+        <address>172.22.121.16</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node111>  
+  
+    <node112>  
+        <name>mkes02</name>  
+        <app>APP01</app>  
+        <appno>1</appno>  
+        <address>172.22.231.12</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node112>  
+  
+    <node113>  
+        <name>mkes02</name>  
+        <app>APP02</app>  
+        <appno>2</appno>  
+        <address>172.22.232.12</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node113>  
+  
+    <node118>  
+        <name>mkes02</name>  
+        <app>APP03</app>  
+        <appno>3</appno>  
+        <address>172.22.231.24</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node118>  
+  
+    <node119>  
+        <name>mkes02</name>  
+        <app>APP04</app>  
+        <appno>4</appno>  
+        <address>172.22.232.23</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node119>  
+  
+    <node114>  
+        <name>ES42</name>  
+        <app>APP01</app>  
+        <appno>5</appno>  
+        <address>172.22.120.12</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node114>  
+  
+    <node115>  
+        <name>ES42</name>  
+        <app>APP02</app>  
+        <appno>6</appno>  
+        <address>172.22.121.12</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node115>  
+  
+    <node116>  
+        <name>ES42</name>  
+        <app>APP03</app>  
+        <appno>7</appno>  
+        <address>172.22.120.36</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node116>  
+  
+    <node117>  
+        <name>ES42</name>  
+        <app>APP04</app>  
+        <appno>8</appno>  
+        <address>172.22.121.36</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node117>  
+  
+    <node120>  
+        <name>ES03</name>  
+        <app>APP01</app>  
+        <appno>1</appno>  
+        <address>172.22.133.28</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node120>  
+  
+    <node121>  
+        <name>ES03</name>  
+        <app>APP02</app>  
+        <appno>2</appno>  
+        <address>172.22.134.28</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node121>  
+  
+    <node122>  
+        <name>ES03</name>  
+        <app>APP03</app>  
+        <appno>3</appno>  
+        <address>172.22.133.29</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node122>  
+  
+    <node123>  
+        <name>ES03</name>  
+        <app>APP04</app>  
+        <appno>4</appno>  
+        <address>172.22.134.29</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node123>  
+  
+    <node124>  
+        <name>ES43</name>  
+        <app>APP01</app>  
+        <appno>5</appno>  
+        <address>172.22.22.28</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node124>  
+  
+    <node125>  
+        <name>ES43</name>  
+        <app>APP02</app>  
+        <appno>6</appno>  
+        <address>172.22.23.28</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node125>  
+  
+    <node126>  
+        <name>ES43</name>  
+        <app>APP03</app>  
+        <appno>7</appno>  
+        <address>172.22.22.29</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node126>  
+  
+    <node127>  
+        <name>ES43</name>  
+        <app>APP04</app>  
+        <appno>8</appno>  
+        <address>172.22.23.29</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node127>  
+  
+    <node128>  
+        <name>mkes04</name>  
+        <app>APP01</app>  
+        <appno>1</appno>  
+        <address>172.22.231.143</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node128>  
+  
+    <node129>  
+        <name>mkes04</name>  
+        <app>APP02</app>  
+        <appno>2</appno>  
+        <address>172.22.232.143</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node129>  
+  
+    <node130>  
+        <name>mkes04</name>  
+        <app>APP03</app>  
+        <appno>3</appno>  
+        <address>172.22.231.144</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node130>  
+  
+    <node131>  
+        <name>mkes04</name>  
+        <app>APP04</app>  
+        <appno>4</appno>  
+        <address>172.22.232.144</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node131>  
+  
+    <node132>  
+        <name>ES44</name>  
+        <app>APP01</app>  
+        <appno>5</appno>  
+        <address>172.22.120.143</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node132>  
+  
+    <node133>  
+        <name>ES44</name>  
+        <app>APP02</app>  
+        <appno>6</appno>  
+        <address>172.22.121.143</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node133>  
+  
+    <node134>  
+        <name>ES44</name>  
+        <app>APP03</app>  
+        <appno>7</appno>  
+        <address>172.22.120.144</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node134>  
+  
+    <node135>  
+        <name>ES44</name>  
+        <app>APP04</app>  
+        <appno>8</appno>  
+        <address>172.22.121.144</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node135>  
+  
+    <node136>  
+        <name>MS36</name>  
+        <app>APP1</app>  
+        <appno>1</appno>  
+        <address>172.22.71.43</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node136>  
+  
+    <node137>  
+        <name>MS36</name>  
+        <app>APP2</app>  
+        <appno>2</appno>  
+        <address>172.22.72.43</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node137>  
+  
+    <node138>  
+        <name>MS36</name>  
+        <app>APP3</app>  
+        <appno>3</appno>  
+        <address>172.22.71.44</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node138>  
+  
+    <node139>  
+        <name>MS66</name>  
+        <app>APP4</app>  
+        <appno>4</appno>  
+        <address>172.22.72.44</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node139>  
+  
+    <node140>  
+        <name>MS66</name>  
+        <app>APP1</app>  
+        <appno>5</appno>  
+        <address>172.22.171.43</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node140>  
+  
+    <node141>  
+        <name>MS66</name>  
+        <app>APP2</app>  
+        <appno>6</appno>  
+        <address>172.22.172.43</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node141>  
+  
+    <node142>  
+        <name>MS66</name>  
+        <app>APP3</app>  
+        <appno>7</appno>  
+        <address>172.22.171.44</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node142>  
+  
+    <node143>  
+        <name>MS66</name>  
+        <app>APP4</app>  
+        <appno>8</appno>  
+        <address>172.22.172.44</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node143>  
+  
+    <node144>  
+        <name>mkes05</name>  
+        <app>APP1</app>  
+        <appno>1</appno>  
+        <address>172.22.231.48</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node144>  
+  
+    <node145>  
+        <name>mkes05</name>  
+        <app>APP2</app>  
+        <appno>2</appno>  
+        <address>172.22.232.48</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node145>  
+  
+    <node146>  
+        <name>mkes05</name>  
+        <app>APP3</app>  
+        <appno>3</appno>  
+        <address>172.22.231.49</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node146>  
+  
+    <node147>  
+        <name>mkes05</name>  
+        <app>APP4</app>  
+        <appno>4</appno>  
+        <address>172.22.232.49</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node147>  
+  
+    <node148>  
+        <name>ES55</name>  
+        <app>APP1</app>  
+        <appno>5</appno>  
+        <address>172.22.120.58</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node148>  
+  
+    <node149>  
+        <name>ES55</name>  
+        <app>APP2</app>  
+        <appno>6</appno>  
+        <address>172.22.121.58</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node149>  
+  
+    <node150>  
+        <name>ES55</name>  
+        <app>APP3</app>  
+        <appno>7</appno>  
+        <address>172.22.120.59</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node150>  
+  
+    <node151>  
+        <name>ES55</name>  
+        <app>APP4</app>  
+        <appno>8</appno>  
+        <address>172.22.121.59</address>
+	<password>S0l0$h0t_2k24!</password>  
+    </node151>  
+  
+  
+</prod>
+
+</EXTRAJEET>
+   

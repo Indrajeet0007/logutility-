@@ -6,6 +6,7 @@ import java.io.File;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -24,7 +25,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-
+@Component
 public class XmlReader {
 	   boolean DualAuth = false;
 	   String hostPass="";
@@ -50,7 +51,7 @@ public class XmlReader {
     
        boolean MAIL;
        boolean prod;
-       String local=System.getProperty("user.dir").replace("EXTRAJEET","");
+       String local=System.getProperty("user.dir");
        String dPath=local+"/DOWNLOAD/";
        
        private Session uat42Session = null;
@@ -62,7 +63,7 @@ public class XmlReader {
 		  try   
 	        {  
 	        //creating a constructor of file class and parsing an XML file  
-	        File file = new File(local+"/EXTRAJEET.xml");  
+	        File file = new File(local+"/src/main/resources/EXTRAJEET.xml");  
 	        //an instance of factory that gives a document builder  
 	        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();  
 	        //an instance of builder to parse the specified xml file  
@@ -116,15 +117,6 @@ public class XmlReader {
 	        e.printStackTrace();  
 	        }
 	}
-
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
-
-	
 
 	public String getHost() {
 		return host;
