@@ -44,68 +44,62 @@ public class LogUtility {
 	XmlReader xmlReader;
 	@Autowired
 	Logs log;
+	
 	public Logs getlogs(String txnId) {
+		log.setTxnID(txnId);
 		
 		String logs = "";
 		String backup = "";
 		String txncmd = "";
 		String server = "";
 		String analysis = "";
-		String nodeId="";
+		boolean prod = xmlReader.isProd();
+	
 		if (txnId.length() == 19) {
-			nodeId = txnId.substring(1, 3);
-
+			log.setNodeid( txnId.substring(1, 4));
 		} else if (txnId.length() == 18) {
-			nodeId = txnId.substring(1, 2);
+			log.setNodeid(txnId.substring(1, 3));
 		} else {
 			logger.info("INVALID TXN ID");
 			return log;
-		}
+		}	
+		logger.info(log.getNodeid());
 		
-		log = serverRepository.getIpDetails(txnId);
-		log.setTxnID(txnId);
-		boolean MAIL = xmlReader.isMAIL();
-		boolean prod = xmlReader.isProd();
-
-
-
+		serverRepository.getIpDetails(log);
 		
 		server = "ssh " + xmlReader.getUserName() + "@" + log.getIp();
-		String DateANDTime = Clock.getDateANDTime(txnId);
-		log.setDateANDTime(DateANDTime);
-		if (DateANDTime.length() > 2) {
-
-			txncmd = "zgrep --color --text \"" + txnId + "\" /opt/auruspay_switch/log/auruspay/auruspay.log-"
-					+ DateANDTime + ".zip";
+		log.setDateANDTime(Clock.getDateANDTime(txnId));
+		
+		if (log.getDateANDTime().length() > 2) {
+			txncmd = "z"+Constants.txnCommand.replace("txnId", txnId)+"-" +log.getDateANDTime() + ".zip";
 		} else {
-			txncmd = "grep --color --text \"" + txnId + "\" /opt/auruspay_switch/log/auruspay/auruspay.log";
+			txncmd = Constants.txnCommand.replace("txnId", txnId);
 		}
 		log.setCmd(txncmd);
-		logger.info(txncmd);
-
-		if (DateANDTime.length() > 2 && xmlReader.isBackupFlag()) {
+		logger.info(log.getCmd());
+		
+		
+		
+		
+		if (log.getDateANDTime().length() > 2 && xmlReader.isBackupFlag()) {
 			if (log.getAppName().equalsIgnoreCase("ldnd")) {
 				backup = "cd /logbackup/Auruspay/vwldnd42app01/Auruspay && " + "zgrep --color --text \"" + txnId
-						+ "\" auruspay.log-" + DateANDTime + ".zip";
+						+ "\" auruspay.log-" + log.getDateANDTime() + ".zip";
 			} else if (log.getAppName().equalsIgnoreCase("4")) {
 				backup = "cd /logbackup/Auruspay/" + "CHAAUS42UATAPP000" + log.getAppNo() + "/CHAAUS42UATAPP000"
-						+ log.getAppNo() + "/" + Integer.parseInt(DateANDTime.substring(0, 4)) + "/"
-						+ Integer.parseInt(DateANDTime.substring(5, 7)) + "/" + " && " + "zgrep --color --text \""
-						+ txnId + "\" auruspay.log-" + DateANDTime + ".zip";
+						+ log.getAppNo() + "/" + Integer.parseInt(log.getDateANDTime().substring(0, 4)) + "/"
+						+ Integer.parseInt(log.getDateANDTime().substring(5, 7)) + "/" + " && " + "zgrep --color --text \""
+						+ txnId + "\" auruspay.log-" + log.getDateANDTime() + ".zip";
 			} else {
 				backup = "cd /logbackup/Auruspay/" + "CHAAUS42UATAPP000" + log.getAppNo() + "/CHAAUS42UATAPP000"
-						+ log.getAppNo() + "/" + Integer.parseInt(DateANDTime.substring(0, 4)) + "/"
-						+ Integer.parseInt(DateANDTime.substring(5, 7)) + "/"
-						+ Integer.parseInt(DateANDTime.substring(8, 10)) + "/" + "Auruspay && "
-						+ "zgrep --color --text \"" + txnId + "\" auruspay.log-" + DateANDTime + ".zip";
+						+ log.getAppNo() + "/" + Integer.parseInt(log.getDateANDTime().substring(0, 4)) + "/"
+						+ Integer.parseInt(log.getDateANDTime().substring(5, 7)) + "/"
+						+ Integer.parseInt(log.getDateANDTime().substring(8, 10)) + "/" + "Auruspay && "
+						+ "zgrep --color --text \"" + txnId + "\" auruspay.log-" + log.getDateANDTime() + ".zip";
 			}
 			log.setBackup(backup);
 		}
-		/*
-		 * if((Integer.parseInt(txnid.substring(1, 3))==97)) {
-		 * 
-		 * } else
-		 */ if ((Integer.parseInt(txnId.substring(1, 3)) >= 01) || prod
+		if ((Integer.parseInt(txnId.substring(1, 3)) >= 01) || prod
 				|| ((Integer.parseInt(txnId.substring(1, 3)) >= 91) && (Integer.parseInt(txnId.substring(1, 3)) <= 99)
 						&& !prod)) {
 			if (!prod) {
@@ -136,7 +130,6 @@ public class LogUtility {
 		} else if (System.getenv("USERNAME").contains("ikandhare")) {
 
 			logs = ProdServerAcces.getLog(xmlReader, log);
-//	logger.info(log.getIp()+"  "+log.getCmd());
 			if (logs.length() < 23 && xmlReader.isBackupFlag()) {
 				logger.info("************[RETRYING SAME IN BACKUP]***************\n");
 				logs = BackUpServer.getLogs(xmlReader, log, true);
@@ -150,16 +143,10 @@ public class LogUtility {
 					+ "Use below commands to get logs from backup server " + "ssh -l backup 192.168.13.101\n"
 					+ "password-M@r!on_567$\n" + backup);
 		} else {
-			log.setLogs(logs);
-			try {
+					log.setLogs(logs);		
 				if (xmlReader.isAnalystFlag()) {
 					analysis = Analyst.getAnalysis(logs, log);
 				}
-
-			} catch (Exception e) {
-				logger.info("EXCEPTION IN " + e);
-			}
-
 		}
 		return log;
 	}

@@ -10,10 +10,11 @@ import java.util.TimeZone;
  */
 
 public class Clock {
-	public static String getDateANDTime(String txnid) {		
-		int year =Integer.parseInt(txnid.substring(3,5))+2000;
+	public static String getDateANDTime(String txnId) {
+		 txnId=(txnId.length() == 19)?txnId.substring(1):txnId;		
+		int year =Integer.parseInt(txnId.substring(3,5))+2000;
 		String DateANDTime="";
-        int dof=Integer.parseInt(txnid.substring(5,8));
+        int dof=Integer.parseInt(txnId.substring(5,8));
         int month=1;
         int day=1;
        boolean leapYear=year%4==0 || year%100==0;
@@ -52,7 +53,7 @@ public class Clock {
         System.out.println(leapYear+"Txn DATE and Time\n"
         		+ "DATE :-     Year  "+year+"    Month  "+month+"  Day  "+day);
         
-        int mili=Integer.parseInt(txnid.substring(8,16));
+        int mili=Integer.parseInt(txnId.substring(8,16));
         int hr=(mili)/(60*60*1000);
         mili=mili-(hr*60*60*1000);
         int min=mili/60000;
@@ -85,10 +86,6 @@ System.out.println("CURRENT UTC TIME :>"+ESTY+"   "+ESTM+"   "+ESTD+"     "+ESTH
         }else {
         	DateANDTime="";
         }
-        
-      /*  if (!(( day ==5)||(day==4))) {
-        	DateANDTime="VALID FOR  4-5 MARCH only \n get lastest checkout";
-        }*/
         return DateANDTime;
 		
 	}
