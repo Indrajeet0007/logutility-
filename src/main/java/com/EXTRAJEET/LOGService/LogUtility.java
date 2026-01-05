@@ -1,152 +1,78 @@
-
 package com.EXTRAJEET.LOGService;
-
-import java.awt.Desktop;
-import java.io.File;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.*;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
-import com.EXTRAJEET.constants.Constants;
 import com.EXTRAJEET.entities.Logs;
 import com.EXTRAJEET.entities.XmlReader;
 import com.EXTRAJEET.repository.ServerRepository;
 import com.EXTRAJEET.server.BackUpServer;
 import com.EXTRAJEET.server.ProdServerAcces;
 import com.EXTRAJEET.server.Server;
-import com.jcraft.jsch.Session;
 
 /**
  * This Class is Business class used to gets Credentials from EXTRAJEET.XML file
  * And Calls other methods
  * 
  * 
- * @author Indrajeet Kandhare
+ * @author Indrajeet_Kandhare
  */
 @Component
 public class LogUtility {
+
+	private ServerRepository serverRepository;
+	private XmlReader xmlReader;
+	private CommandBuilder builder;
 	private Logger logger = LoggerFactory.getLogger(LogUtility.class);
 
 	@Autowired
-	ServerRepository serverRepository;
+	public LogUtility(ServerRepository serverRepository, CommandBuilder builder) {
+		this.serverRepository = serverRepository;
+		this.builder = builder;
+	}
 
-	@Autowired
-	XmlReader xmlReader;
-	@Autowired
-	Logs log;
-	
-	public Logs getlogs(String txnId) {
-		log.setTxnID(txnId);
-		
+	public Logs getlogs(Logs log) {
 		String logs = "";
-		String backup = "";
-		String txncmd = "";
-		String server = "";
-		String analysis = "";
-		boolean prod = xmlReader.isProd();
-	
-		if (txnId.length() == 19) {
-			log.setNodeid( txnId.substring(1, 4));
-		} else if (txnId.length() == 18) {
-			log.setNodeid(txnId.substring(1, 3));
-		} else {
-			logger.info("INVALID TXN ID");
-			return log;
-		}	
-		logger.info(log.getNodeid());
-		
-		serverRepository.getIpDetails(log);
-		
-		server = "ssh " + xmlReader.getUserName() + "@" + log.getIp();
-		log.setDateANDTime(Clock.getDateANDTime(txnId));
-		
-		if (log.getDateANDTime().length() > 2) {
-			txncmd = "z"+Constants.txnCommand.replace("txnId", txnId)+"-" +log.getDateANDTime() + ".zip";
-		} else {
-			txncmd = Constants.txnCommand.replace("txnId", txnId);
-		}
-		log.setCmd(txncmd);
-		logger.info(log.getCmd());
-		
-		
-		
-		
-		if (log.getDateANDTime().length() > 2 && xmlReader.isBackupFlag()) {
-			if (log.getAppName().equalsIgnoreCase("ldnd")) {
-				backup = "cd /logbackup/Auruspay/vwldnd42app01/Auruspay && " + "zgrep --color --text \"" + txnId
-						+ "\" auruspay.log-" + log.getDateANDTime() + ".zip";
-			} else if (log.getAppName().equalsIgnoreCase("4")) {
-				backup = "cd /logbackup/Auruspay/" + "CHAAUS42UATAPP000" + log.getAppNo() + "/CHAAUS42UATAPP000"
-						+ log.getAppNo() + "/" + Integer.parseInt(log.getDateANDTime().substring(0, 4)) + "/"
-						+ Integer.parseInt(log.getDateANDTime().substring(5, 7)) + "/" + " && " + "zgrep --color --text \""
-						+ txnId + "\" auruspay.log-" + log.getDateANDTime() + ".zip";
+		String txnId = log.getTxnID();
+		try {
+			if (txnId.length() == 19) {
+				log.setNodeid(txnId.substring(1, 4));
+			} else if (txnId.length() == 18) {
+				log.setNodeid(txnId.substring(1, 3));
 			} else {
-				backup = "cd /logbackup/Auruspay/" + "CHAAUS42UATAPP000" + log.getAppNo() + "/CHAAUS42UATAPP000"
-						+ log.getAppNo() + "/" + Integer.parseInt(log.getDateANDTime().substring(0, 4)) + "/"
-						+ Integer.parseInt(log.getDateANDTime().substring(5, 7)) + "/"
-						+ Integer.parseInt(log.getDateANDTime().substring(8, 10)) + "/" + "Auruspay && "
-						+ "zgrep --color --text \"" + txnId + "\" auruspay.log-" + log.getDateANDTime() + ".zip";
+				logger.info("INVALID TXN ID");
+				return log;
 			}
-			log.setBackup(backup);
-		}
-		if ((Integer.parseInt(txnId.substring(1, 3)) >= 01) || prod
-				|| ((Integer.parseInt(txnId.substring(1, 3)) >= 91) && (Integer.parseInt(txnId.substring(1, 3)) <= 99)
-						&& !prod)) {
-			if (!prod) {
-				txncmd = server + " '" + txncmd + "'";
-			} else {
-				xmlReader.setHost(log.getIp());
-			}
-			log.setTxncmd(txncmd);
-			logger.info(txncmd);
+			logger.info(log.getNodeid());
+
+			serverRepository.getIpDetails(log);
+
+			log.setDateANDTime(Clock.getDateANDTime(txnId));
+
+			xmlReader = builder.buildCommand(log);
 			logs = Server.getLogs(xmlReader, log);
-//                	 logger.info(logs+logs.length());
-			if (logs.equalsIgnoreCase("404") && txncmd.contains("zgrep")) {
-				txncmd = txncmd.replace("zip", "gz");
-				log.setTxncmd(txncmd);
-				logger.info("************[RETRYING SAME gz]***************\n" + txncmd);
-				logs = Server.getLogs(xmlReader, log);
-			}
 			if (logs.equals("404") && xmlReader.isBackupFlag()) {
 				logger.info("************[RETRYING SAME IN BACKUP with ZIP]***************\n");
 				logs = BackUpServer.getLogs(xmlReader, log, false);
-				if (logs.length() < 25) {
-					logger.info("************[RETRYING SAME IN BACKUP with GZ]***************\n");
-					log.setBackup(backup.replace("zip", "gz"));
-					logs = BackUpServer.getLogs(xmlReader, log, false);
-				}
 			}
 
-		} else if (System.getenv("USERNAME").contains("ikandhare")) {
+			if (System.getenv("USERNAME").contains("ikandhare")  && false) {
 
-			logs = ProdServerAcces.getLog(xmlReader, log);
-			if (logs.length() < 23 && xmlReader.isBackupFlag()) {
-				logger.info("************[RETRYING SAME IN BACKUP]***************\n");
-				logs = BackUpServer.getLogs(xmlReader, log, true);
+				logs = ProdServerAcces.getLog(xmlReader, log);
+				if (logs.length() < 23 && xmlReader.isBackupFlag()) {
+					logger.info("************[RETRYING SAME IN BACKUP]***************\n");
+					logs = BackUpServer.getLogs(xmlReader, log, true);
+				}
+
 			}
 
-		}
-
-		if (logs.length() < 25) {
-
-			logger.info("HEY Buddy ! U r Doing Something Wrosng \n" + "Please check manualy or Search in Backup\n "
-					+ "Use below commands to get logs from backup server " + "ssh -l backup 192.168.13.101\n"
-					+ "password-M@r!on_567$\n" + backup);
-		} else {
-					log.setLogs(logs);		
-				if (xmlReader.isAnalystFlag()) {
-					analysis = Analyst.getAnalysis(logs, log);
-				}
+			if (logs.length() > 25) {
+				log.setLogs(logs);
+				Analyst.getAnalysis(logs, log);
+			}
+		} catch (Exception e) {
+			logger.error("Exception in LogUtility", e);
 		}
 		return log;
 	}

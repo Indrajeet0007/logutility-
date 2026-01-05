@@ -34,7 +34,6 @@ public class XmlReader {
        int port=0;
        String userName="";
        boolean download=false;
-       int  c=0;
        boolean analystFlag=false;
        boolean feildFlag=false;
        boolean backupFlag=false;
@@ -84,7 +83,6 @@ public class XmlReader {
 	        System.out.println("DualAuth: "+(DualAuth= eElement.getElementsByTagName("DualAuth").item(0).getTextContent().equalsIgnoreCase("Y")));
 	        
 	        System.out.println("DOWNLOAD: "+(download= eElement.getElementsByTagName("DOWNLOAD").item(0).getTextContent().equalsIgnoreCase("Y")));
-	        System.out.println("C: "+(c=Integer.parseInt( eElement.getElementsByTagName("C").item(0).getTextContent())));
 	        System.out.println("backupFlag: "+(backupFlag=( eElement.getElementsByTagName("Backup").item(0).getTextContent().equalsIgnoreCase("1"))));  
 	        System.out.println("field: "+(feildFlag= (eElement.getElementsByTagName("field").item(0).getTextContent().equalsIgnoreCase("1"))));
 	        System.out.println("Analyst: "+(analystFlag=(eElement.getElementsByTagName("Analyst").item(0).getTextContent().equalsIgnoreCase("1"))));
@@ -140,14 +138,6 @@ public class XmlReader {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-	public int getC() {
-		return c;
-	}
-
-	public void setC(int c) {
-		this.c = c;
 	}
 
 	public boolean isAnalystFlag() {

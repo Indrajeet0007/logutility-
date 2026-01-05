@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.EXTRAJEET.JWTutil;
 import com.EXTRAJEET.LOGService.LogMux;
 import com.EXTRAJEET.entities.Logs;
+import com.EXTRAJEET.entities.TransactionDetails;
 import com.EXTRAJEET.entities.UserDetail;
 import com.EXTRAJEET.userService.UserDetailService;
 
@@ -56,5 +57,11 @@ public class Controller {
 		authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(userDetail.getUsername(), userDetail.getPassword()));
 		return jwTutil.tokenGeneration(userDetail.getUsername());
+	}
+	
+	@PostMapping("/getLogs")
+	public Logs getLogs(@RequestBody TransactionDetails transactionDetails) {
+		
+		return logMux.getlogs(transactionDetails);
 	}
 }

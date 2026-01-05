@@ -18,10 +18,9 @@ public class Server {
     public static String getLogs(XmlReader xmlReader ,Logs log) {
     	String txncmd=log.getTxncmd();
     	String txn=log.getTxnID();
-    	int  c=xmlReader.getC();
+    	int  c=log.getLines();
     	String txnLog="";
         String uniqueId="";
-//        System.out.print(log.toString());     
         try {
             JSch jsch = new JSch();
             Session session = jsch.getSession(xmlReader.getUserName(), xmlReader.getHost(), xmlReader.getPort());

@@ -14,17 +14,7 @@ import lombok.Setter;
 
 @Component
 public class Logs {
-	
-//	 @Override
-//	public String toString() {
-//		return "Logs [mailID=" + mailID + ", TxnID=" + TxnID + ", uniqueId=" + uniqueId + ", PROREQ=" + PROREQ
-//				+ ", PRORES=" + PRORES + ", cctReq=" + cctReq + ", cctRes=" + cctRes + ", logs=" + logs + ", parse="
-//				+ parse + ", fieldsName=" + fieldsName + ", raisingFormat=" + raisingFormat + ", additionalData="
-//				+ additionalData + ", fileName=" + fileName + ", txncmd=" + txncmd + ", backup=" + backup + ", appName="
-//				+ appName + ", app=" + app + ", appNo=" + appNo + ", ip=" + ip + ", DateANDTime=" + DateANDTime
-//				+ ", nodeid=" + nodeid + ", cmd=" + cmd + "]";
-//	}
-	
+		
 
 	 String mailID="";
      String TxnID="";
@@ -49,8 +39,15 @@ public class Logs {
      String nodeid="";
      String cmd="";
      String pass="";
+     int Lines;
      
-     public String getAppName() {
+     public int getLines() {
+		return Lines;
+	}
+	public void setLines(int lines) {
+		Lines = lines;
+	}
+	public String getAppName() {
 		return appName;
 	}
 	public void setAppName(String appName) {

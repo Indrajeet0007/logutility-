@@ -66,7 +66,6 @@ public class Authenticator {
          }
   log.setTxncmd("cat EXTRAJEET/USERNAME.txt");
   log.setTxnID("USER");
-  xmlReader.setC(0);
   USERNAMES=Server.getLogs(xmlReader, log);
    JSONObject USER_ACCESS = new JSONObject(USERNAMES);
 //     	System.out.println(USER_ACCESS+""+USER_ACCESS.has(username)+"Enter the TXN ID "+Integer.parseInt((String) USER_ACCESS.get("ikandhare")));
