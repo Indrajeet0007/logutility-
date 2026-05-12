@@ -1,64 +1,70 @@
 package com.EXTRAJEET.filter;
 
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.ReactiveSecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
-import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.server.WebFilter;
+import org.springframework.web.server.WebFilterChain;
 
 import com.EXTRAJEET.JWTutil;
 import com.EXTRAJEET.repository.UserRepository;
 
 import io.jsonwebtoken.Claims;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import reactor.core.publisher.Mono;
 
 @Component
-public class AuthTokenfilter  extends OncePerRequestFilter{
+public class AuthTokenfilter implements WebFilter {
 
-	private final Logger log =LoggerFactory.getLogger(AuthTokenfilter.class);
-	@Autowired
-	JWTutil jwTutil;
-	
-	@Autowired
-	UserRepository userRepository;
-	
-	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
-		log.info(request.toString());			
-String authToken = request.getHeader("Authorization");
-log.info(authToken);
-if(authToken != null && authToken.startsWith("Bearer ")) {
-	authToken= authToken.substring(7);
-  Claims claims = jwTutil.extraction(authToken);
-  String userName = claims.getSubject();
-  UserDetails userDetails = userRepository.findByUsername(userName).orElseThrow();
-  if(jwTutil.validateToken(claims, userDetails)){
-	UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken( userDetails,null, userDetails.getAuthorities() );
-	token.setDetails( new WebAuthenticationDetailsSource().buildDetails(request));
-	
-	SecurityContextHolder.getContext().setAuthentication(token);
-	 
-	  
-	  
-  }
-  
-  
-}
-filterChain.doFilter(request, response);
-		
-	}
+    private final Logger log = LoggerFactory.getLogger(AuthTokenfilter.class);
 
+    @Autowired
+    JWTutil jwTutil;
 
+    @Autowired
+    UserRepository userRepository;
+
+    @Override
+    public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+
+        String authHeader = exchange.getRequest()
+                .getHeaders()
+                .getFirst(HttpHeaders.AUTHORIZATION);
+
+        log.info("Auth Header: {}", authHeader);
+
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return chain.filter(exchange);
+        }
+
+        String token = authHeader.substring(7);
+
+        Claims claims = jwTutil.extraction(token);
+        String username = claims.getSubject();
+
+        return userRepository.findByUsername(username)
+                .flatMap(userDetails -> {
+
+                    if (jwTutil.validateToken(claims, userDetails)) {
+
+                        UsernamePasswordAuthenticationToken auth =
+                                new UsernamePasswordAuthenticationToken(
+                                        userDetails,
+                                        null,
+                                        userDetails.getAuthorities()
+                                );
+
+                        return chain.filter(exchange)
+                                .contextWrite(ReactiveSecurityContextHolder.withAuthentication(auth));
+                    }
+
+                    return chain.filter(exchange);
+                });
+    }
 }

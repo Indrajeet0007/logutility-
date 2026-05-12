@@ -1,12 +1,13 @@
 package com.EXTRAJEET.repository;
 
-import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
-
 import com.EXTRAJEET.entities.UserDetail;
+
+import reactor.core.publisher.Mono;
+
 @Repository
-public interface UserRepository extends JpaRepository<UserDetail, Long>{
- Optional<UserDetail> findByUsername (String Username);
+public interface UserRepository extends ReactiveCrudRepository<UserDetail, Long>{
+ Mono<UserDetail> findByUsername (String Username);
 }

@@ -11,6 +11,9 @@ import com.EXTRAJEET.server.BackUpServer;
 import com.EXTRAJEET.server.ProdServerAcces;
 import com.EXTRAJEET.server.Server;
 
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 /**
  * This Class is Business class used to gets Credentials from EXTRAJEET.XML file
  * And Calls other methods
@@ -32,7 +35,7 @@ public class LogUtility {
 		this.builder = builder;
 	}
 
-	public Logs getlogs(Logs log) {
+	public Flux <Logs> getlogs(Logs log) {
 		String logs = "";
 		String txnId = log.getTxnID();
 		try {
@@ -42,7 +45,7 @@ public class LogUtility {
 				log.setNodeid(txnId.substring(1, 3));
 			} else {
 				logger.info("INVALID TXN ID");
-				return log;
+				return Flux.just(log);
 			}
 			logger.info(log.getNodeid());
 
@@ -74,7 +77,7 @@ public class LogUtility {
 		} catch (Exception e) {
 			logger.error("Exception in LogUtility", e);
 		}
-		return log;
+		return Flux.just(log);
 	}
 
 }

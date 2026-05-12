@@ -1,6 +1,5 @@
 package com.EXTRAJEET.userService;
 
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +13,8 @@ import org.springframework.stereotype.Service;
 import com.EXTRAJEET.entities.UserDetail;
 import com.EXTRAJEET.repository.UserRepository;
 
+import reactor.core.publisher.Flux;
+
 @Service
 public class UserDetailService implements UserDetailsService {
 	private final Logger log= LoggerFactory.getLogger(UserDetailService.class);
@@ -25,14 +26,14 @@ public class UserDetailService implements UserDetailsService {
 		userRepository.save(userDetail);
 	}
 	
-	public List<UserDetail> getAll() {
+	public Flux<UserDetail> getAll() {
 		return userRepository.findAll();
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		return userRepository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("EMPLOYEEE NOT FOUND"));
+		return userRepository.findByUsername(username).block();
 	}
 
 }

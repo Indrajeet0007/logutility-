@@ -11,6 +11,9 @@ import com.EXTRAJEET.entities.Logs;
 import com.EXTRAJEET.entities.TransactionDetails;
 import com.EXTRAJEET.entities.XmlReader;
 
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 @Component
 public class LogMux {
 	
@@ -19,7 +22,7 @@ public class LogMux {
 	@Autowired
 	Logs logs;
 
-	public Logs getlogs(String txnID) {
+	public Flux<Logs> getlogs(String txnID) {
 		logs.setTxnID(txnID);
 		return logUtility.getlogs(logs);
 	}
@@ -28,7 +31,7 @@ public class LogMux {
 		logs.setTxnID(transactionDetails.getTransactionId());
 		logs.setLines(transactionDetails.getLines());
 		logs.setMailID(transactionDetails.getMail());
-		return logUtility.getlogs(logs);
+		return logUtility.getlogs(logs).blockFirst();
 	}
 
 }

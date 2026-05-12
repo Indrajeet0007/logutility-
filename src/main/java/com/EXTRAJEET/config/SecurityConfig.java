@@ -1,57 +1,54 @@
 package com.EXTRAJEET.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.authentication.ReactiveAuthenticationManager;
+import org.springframework.security.authentication.UserDetailsRepositoryReactiveAuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.server.SecurityWebFilterChain;
 
-import com.EXTRAJEET.JWTutil;
-import com.EXTRAJEET.filter.AuthTokenfilter;
-import com.EXTRAJEET.userService.UserDetailService;
+import reactor.core.publisher.Mono;
 
 @Configuration
+@EnableWebFluxSecurity
 public class SecurityConfig {
-	@Autowired
-	AuthTokenfilter tokenfilter;
-	
-	@Bean 
-	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-	
-	return httpSecurity.csrf( csrf->csrf.disable())
-			.authorizeHttpRequests(Auth->Auth.requestMatchers("/api/save").permitAll()
-					.requestMatchers("/api/getall").permitAll()
-					.requestMatchers("/h2-console/**").permitAll()
-					.requestMatchers("/api/gettoken").permitAll()
-					.anyRequest().authenticated()
-					)
-			.headers(headers -> headers.frameOptions(frame -> frame.disable()))
-	        .formLogin(form -> form.permitAll())
-	        .addFilterBefore(tokenfilter, UsernamePasswordAuthenticationFilter.class)
-			.build();
-			
-}
-	@Bean
-	public PasswordEncoder encoder () {
-		return new BCryptPasswordEncoder();
-	}
-	@Bean
-	public UserDetailsService userDetailsService () {
-		return new UserDetailService();
-	}
-@Bean	
-public 	AuthenticationManager authenticationManager (UserDetailsService userDetailsService , PasswordEncoder encoder ) {
-		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-		daoAuthenticationProvider.setPasswordEncoder(encoder());
-		daoAuthenticationProvider.setUserDetailsService(userDetailsService());
-		return new  ProviderManager(daoAuthenticationProvider);
-	}
+
+    @Bean
+    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+
+        return http
+                .csrf(ServerHttpSecurity.CsrfSpec::disable)
+                .authorizeExchange(auth -> auth
+                        .pathMatchers("/api/**").permitAll()
+                        .pathMatchers("/actuator/**", "/h2-console/**").permitAll()
+                        .anyExchange().authenticated()
+                )
+                .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
+                .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
+                .build();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+    @Bean
+    public AuthenticationManager authenticationManager(
+            UserDetailsService userDetailsService,
+            PasswordEncoder encoder) {
+
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(encoder);
+
+        return new ProviderManager(provider);
+    }
 }

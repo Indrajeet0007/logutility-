@@ -3,6 +3,9 @@ package com.EXTRAJEET.server;
 
 import java.io.InputStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.EXTRAJEET.entities.Logs;
 import com.EXTRAJEET.entities.XmlReader;
 /**
@@ -15,6 +18,7 @@ import com.jcraft.jsch.*;
 
 
 public class Server {
+	private static Logger LOG= LoggerFactory.getLogger(Server.class);
     public static String getLogs(XmlReader xmlReader ,Logs log) {
     	String txncmd=log.getTxncmd();
     	String txn=log.getTxnID();
@@ -26,7 +30,7 @@ public class Server {
             Session session = jsch.getSession(xmlReader.getUserName(), xmlReader.getHost(), xmlReader.getPort());
             session.setPassword(xmlReader.getHostPass());
             session.setConfig("StrictHostKeyChecking", "no"); // Disable host key checking (not recommended for production)
-            
+            LOG.info(xmlReader.toString() );
             session.connect();
             byte[] buffer = null;
             InputStream in = null;
@@ -51,13 +55,13 @@ public class Server {
                         break;
                     }
                     if(!txn.equalsIgnoreCase("USER")) {                    	
-                    	System.out.print(new String(buffer, 0, bytesRead));
+                    	LOG.info(new String(buffer, 0, bytesRead));
                     }
                     txnLog+=new String(buffer, 0, bytesRead);
                 }
                 if (channel.isClosed()) {
                     if (in.available() > 0) continue;
-                    System.out.println("Exit status: " + channel.getExitStatus());
+                    LOG.info("Exit status: " + channel.getExitStatus());
                     break;
                 }
             }            
@@ -71,9 +75,9 @@ public class Server {
             	int startingPort = 8080; 
 
                 int forwardedPort = BackUpServer.findAvailablePort(startingPort);
-                System.out.println(xmlReader.getUserName()+"Available Port on Laptop : " + forwardedPort);
+                LOG.info(xmlReader.getUserName()+"Available Port on Laptop : " + forwardedPort);
                 
-                System.out.println("Connected host --------------> "+session.getHost());
+                LOG.info("Connected host --------------> "+session.getHost());
             	
                 session.setPortForwardingL(forwardedPort, log.getIp(), 22);
 
@@ -84,11 +88,11 @@ public class Server {
                 session.setConfig("StrictHostKeyChecking", "no");
          
                 session.connect();
-                System.out.println("SFTP Connection Jump Serever ::: "+session.isConnected());
+                LOG.info("SFTP Connection Jump Serever ::: "+session.isConnected());
                
                  channel = session.openChannel("exec");
                  txncmd=log.getCmd();
-                 System.out.println(log.getIp()+"Command "+txncmd);
+                 LOG.info(log.getIp()+"Command "+txncmd);
                 ((ChannelExec) channel).setCommand(txncmd);
               
                 channel.setInputStream(null);
@@ -104,12 +108,12 @@ public class Server {
                         if (bytesRead < 0) {
                             break;
                         }
-                        System.out.print(new String(buffer, 0, bytesRead));
+                        LOG.info(new String(buffer, 0, bytesRead));
                         txnLog+=new String(buffer, 0, bytesRead);
                     }
                     if (channel.isClosed()) {
                         if (in.available() > 0) continue;
-                        System.out.println("Exit status: " + channel.getExitStatus());
+                        LOG.info("Exit status: " + channel.getExitStatus());
                         break;
                     }
                 }            
@@ -121,7 +125,7 @@ public class Server {
             String [] txnLogArray =txnLog.split(" - ");
         	for(int i =0;i<txnLogArray.length;i++) {
         		if(txnLogArray[i].contains("Generated Aurus Transaction ID")) {
-        			System.out.println("uniqueId  :  "+(uniqueId=txnLogArray[i].substring(1,37)));
+        			LOG.info("uniqueId  :  "+(uniqueId=txnLogArray[i].substring(1,37)));
         		}
         	}        	
             if(uniqueId.length()!=36) {
@@ -129,13 +133,13 @@ public class Server {
        		 txnLogArray =txnLog.split("[\\[\\]]");
          	for(int i =0;i<txnLogArray.length;i++) {
          		if(txnLogArray[i].contains("SO.") && (txnLogArray[i].length()>36) && ((txnLogArray[i].substring(0,3).equals("SO.")))) {
-         			System.out.println("uniqueId  :  "+(uniqueId=txnLogArray[i].substring(3,39)));
+         			LOG.info("uniqueId  :  "+(uniqueId=txnLogArray[i].substring(3,39)));
          			break;
          		}else if(txnLogArray[i].contains("SM.") && (txnLogArray[i].length()>36) && ((txnLogArray[i].substring(0,3).equals("SM.")))) {
-         			System.out.println("uniqueId  :  "+(uniqueId=txnLogArray[i].substring(3,39)));
+         			LOG.info("uniqueId  :  "+(uniqueId=txnLogArray[i].substring(3,39)));
          			break;
          		}else if(txnLogArray[i].contains("SPO.") && (txnLogArray[i].length()>36) && ((txnLogArray[i].substring(0,4).equals("SPO.")))) {
-         			System.out.println("uniqueId  :  "+(uniqueId=txnLogArray[i].substring(3,39)));
+         			LOG.info("uniqueId  :  "+(uniqueId=txnLogArray[i].substring(3,39)));
          			break;
          		}
          	
@@ -149,7 +153,7 @@ public class Server {
             if(c>0) {            	
             	txncmd=txncmd.replaceFirst("--text","--text -C"+c);
             }
-            System.out.println("Command"+txncmd);
+            LOG.info("Command"+txncmd);
             //UNIQUE=-=-=-=-
             channel = session.openChannel("exec");
             ((ChannelExec) channel).setCommand(txncmd);
@@ -167,17 +171,17 @@ public class Server {
                     if (bytesRead < 0) {
                         break;
                     }
-                    System.out.print(new String(buffer, 0, bytesRead));
+                    LOG.info(new String(buffer, 0, bytesRead));
                     txnLog+=new String(buffer, 0, bytesRead);
                 }
                 if (channel.isClosed()) {
                     if (in.available() > 0) continue;
-//                    System.out.println("Exit status: " + channel.getExitStatus());
+//                    LOG.infoln("Exit status: " + channel.getExitStatus());
                     break;
                 }
             }
             }else {
-            	System.out.print("ERROR CODE 404 : NOTFOUND\n");
+            	LOG.info("ERROR CODE 404 : NOTFOUND\n");
             	txnLog="404";
             	 channel.disconnect();
                  session.disconnect();
@@ -187,7 +191,7 @@ public class Server {
             channel.disconnect();
             session.disconnect();
         } catch (Exception e) {
-        	System.out.print("ERROR CODE 404 : NOT FOUND\n"+e);
+        	LOG.info("ERROR CODE 404 : NOT FOUND\n"+e);
             e.printStackTrace();
             if(txnLog.length()<25) {
             	txnLog="404";           

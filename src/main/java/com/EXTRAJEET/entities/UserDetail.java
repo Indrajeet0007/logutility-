@@ -15,22 +15,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.EXTRAJEET.enums.Team;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 
 
-@Entity
+
+
 public class UserDetail implements UserDetails {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	private long id;
 	private String username;
 	private String password;
-	@Enumerated(EnumType.STRING)
 	private Team team;
 
 //private final Logger log = LoggerFactory.getLogger(UserDetail.class);

@@ -2,6 +2,7 @@ package com.EXTRAJEET.entities;
 
 
 import java.io.File;
+import java.util.Arrays;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -15,19 +16,23 @@ import org.w3c.dom.NodeList;
 import com.jcraft.jsch.Session;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-
 @Component
 public class XmlReader {
-	   boolean DualAuth = false;
+	   @Override
+	public String toString() {
+		return "XmlReader [DualAuth=" + DualAuth + ", hostPass=" + hostPass + ", uatPass=" + uatPass + ", host=" + host
+				+ ", port=" + port + ", userName=" + userName + ", download=" + download + ", analystFlag="
+				+ analystFlag + ", feildFlag=" + feildFlag + ", backupFlag=" + backupFlag + ", SearchKEY=" + SearchKEY
+				+ ", SearchKeys=" + Arrays.toString(SearchKeys) + ", SearchKeysEncryption="
+				+ Arrays.toString(SearchKeysEncryption) + ", Backupip=" + Backupip + ", backupuser=" + backupuser
+				+ ", BKpassword=" + BKpassword + ", PRODBackupip=" + PRODBackupip + ", PRODbackupuser=" + PRODbackupuser
+				+ ", PRODBKpassword=" + PRODBKpassword + ", MAIL=" + MAIL + ", prod=" + prod + ", local=" + local
+				+ ", dPath=" + dPath + ", uat42Session=" + uat42Session + ", uatAppSession=" + uatAppSession
+				+ ", uatTempSession=" + uatTempSession + ", prodTempSession=" + prodTempSession + "]";
+	}
+
+
+	boolean DualAuth = false;
 	   String hostPass="";
 	   String uatPass="";
        String host="";

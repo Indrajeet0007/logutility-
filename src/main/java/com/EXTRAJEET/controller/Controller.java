@@ -21,6 +21,9 @@ import com.EXTRAJEET.entities.TransactionDetails;
 import com.EXTRAJEET.entities.UserDetail;
 import com.EXTRAJEET.userService.UserDetailService;
 
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 @RestController
 @RequestMapping("/api")
 public class Controller {
@@ -35,14 +38,15 @@ public class Controller {
 	@Autowired
 	LogMux logMux;
 
-	@GetMapping("/getLogs/{TXNID}")
-	public Logs getlogs(@PathVariable String TXNID) {
+	@GetMapping(value ="/getLogs/{TXNID}", produces = org.springframework.http.MediaType.TEXT_EVENT_STREAM_VALUE)
+	public Flux<Logs> getlogs(@PathVariable String TXNID) {
 		return logMux.getlogs(TXNID);
 	}
 
-	@GetMapping("/getAll")
-	public List<UserDetail> getAllUsers() {
-		return userDetailService.getAll();
+	@GetMapping(value ="/getAll" , produces = org.springframework.http.MediaType.TEXT_EVENT_STREAM_VALUE)
+	public Flux<UserDetail> getAllUsers() {
+		 return userDetailService.getAll()
+		            .delayElements(java.time.Duration.ofSeconds(1));
 	}
 
 	@PostMapping("/save")
